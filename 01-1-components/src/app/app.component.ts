@@ -8,7 +8,5 @@ import {COURSES} from '../db-data';
     standalone: false
 })
 export class AppComponent {
-
-
-
+    courses = COURSES;
 }
