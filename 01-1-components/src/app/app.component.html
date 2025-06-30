@@ -6,9 +6,10 @@
 </div>
 
 <div class="courses">
+  @for (course of courses; track course.id) {
   <course-card
-    *ngFor="let course of courses"
     [course]="course"
     (courseSelected)="onCourseSelected($event)"
   ></course-card>
+  }
 </div>
