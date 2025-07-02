@@ -7,7 +7,7 @@
 
 
 
-<div class="courses" *ngIf="courses[0] as course">
+<div class="courses salmon-theme" *ngIf="courses[0] as course">
 
     <course-card highlighted #highlighter="hl"
             (toggleHighlight)="onToggleHighlight($event)"
@@ -21,7 +21,7 @@
         </div>
 
     </course-card>
-    
+
     <course-card highlighted #highlighter="hl"
             (toggleHighlight)="onToggleHighlight($event)"
             (courseSelected)="onCourseSelected($event)"
