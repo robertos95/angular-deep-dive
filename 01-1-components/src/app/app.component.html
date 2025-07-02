@@ -18,7 +18,9 @@
     [class.is-odd]="odd"
     [class.is-even]="even"
     (courseSelected)="onCourseSelected($event)"
-  ></course-card>
+  >
+    <course-image [src]="course.iconUrl" [alt]="course.description" />
+  </course-card>
   } @empty {
   <h1>No courses found!</h1>
   }
