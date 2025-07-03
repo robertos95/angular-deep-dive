@@ -14,7 +14,6 @@ import {
 } from "@angular/core";
 import { Course } from "../model/course";
 import { CoursesService } from "../services/courses.service";
-import { COURSES_SERVICE_TOKEN } from "../app.component";
 
 @Component({
   selector: "course-card",
@@ -32,9 +31,7 @@ export class CourseCardComponent implements OnInit {
   @Output("courseChanged")
   courseEmitter = new EventEmitter<Course>();
 
-  constructor(
-    @Inject(COURSES_SERVICE_TOKEN) private coursesService: CoursesService
-  ) {}
+  constructor(private coursesService: CoursesService) {}
 
   ngOnInit() {}
 

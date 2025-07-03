@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Course } from "../model/course";
 import { Observable } from "rxjs";
 
+@Injectable()
 export class CoursesService {
   constructor(private http: HttpClient) {}
 
