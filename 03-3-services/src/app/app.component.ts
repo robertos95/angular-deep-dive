@@ -16,6 +16,7 @@ import { HighlightedDirective } from "./directives/highlighted.directive";
 import { Observable } from "rxjs";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { CoursesService } from "./services/courses.service";
+import { AppConfig, CONFIG_TOKEN } from "./config";
 
 @Component({
   selector: "app-root",
@@ -26,7 +27,12 @@ import { CoursesService } from "./services/courses.service";
 export class AppComponent implements OnInit {
   courses$: Observable<Course[]>;
 
-  constructor(private coursesService: CoursesService) {}
+  constructor(
+    private coursesService: CoursesService,
+    @Inject(CONFIG_TOKEN) private config: AppConfig
+  ) {
+    console.log(config);
+  }
 
   ngOnInit() {
     this.courses$ = this.coursesService.loadCourses();
