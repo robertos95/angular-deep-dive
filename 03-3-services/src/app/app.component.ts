@@ -22,12 +22,6 @@ import { CoursesService } from "./services/courses.service";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
   standalone: false,
-  providers: [
-    {
-      provide: CoursesService,
-      useClass: CoursesService,
-    },
-  ],
 })
 export class AppComponent implements OnInit {
   courses$: Observable<Course[]>;
