@@ -2,6 +2,8 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  Inject,
+  InjectionToken,
   OnInit,
   QueryList,
   ViewChild,
@@ -15,16 +17,33 @@ import { Observable } from "rxjs";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { CoursesService } from "./services/courses.service";
 
+function coursesServiceFactory(http: HttpClient): CoursesService {
+  return new CoursesService(http);
+}
+
+export const COURSES_SERVICE_TOKEN = new InjectionToken<CoursesService>(
+  "CoursesService"
+);
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
   standalone: false,
+  providers: [
+    {
+      provide: COURSES_SERVICE_TOKEN,
+      useFactory: coursesServiceFactory,
+      deps: [HttpClient],
+    },
+  ],
 })
 export class AppComponent implements OnInit {
   courses$: Observable<Course[]>;
 
-  constructor(private coursesService: CoursesService) {}
+  constructor(
+    @Inject(COURSES_SERVICE_TOKEN) private coursesService: CoursesService
+  ) {}
 
   ngOnInit() {
     this.courses$ = this.coursesService.loadCourses();
